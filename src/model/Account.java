@@ -1,8 +1,7 @@
 package model;
 
-public class Account {
+public class Account extends Staff{
     private String userName;
     private String password;
-    private String fullName;
-    private String role;
+
 }

@@ -1,6 +1,6 @@
 package model;
 
 public class Role {
-    private int id;
-    private String name;
+    private int idRole;
+    private String nameRole;
 }
