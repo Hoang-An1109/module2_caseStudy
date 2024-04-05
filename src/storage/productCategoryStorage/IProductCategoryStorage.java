@@ -1,4 +1,4 @@
-package storage.ProductCategoryStorage;
+package storage.productCategoryStorage;
 
 import model.ProductCategory;
 import storage.IGenericStorage;

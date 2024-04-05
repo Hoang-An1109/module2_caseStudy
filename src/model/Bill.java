@@ -1,14 +1,13 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Bill extends Product {
     private int idBill;
     private LocalDate dateBill;
     private String nameStaff;
-    private String nameProduct;
-    private double price;
-    private int quantity;
+    private List<Product> nameProduct;
     private double discount;
     private double totalAmount;
 

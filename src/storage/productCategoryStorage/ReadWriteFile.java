@@ -1,4 +1,4 @@
-package storage.ProductCategoryStorage;
+package storage.productCategoryStorage;
 
 import model.ProductCategory;
 import java.io.*;
@@ -26,11 +26,10 @@ public class ReadWriteFile implements IProductCategoryStorage{
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             StringBuilder categoryString = new StringBuilder();
-            String line;
             for (ProductCategory productCategory : productCategoryList) {
-                line=productCategory.getIdProductCategory()+","+ productCategory.getIdProductCategory();
-                bufferedWriter.write(line);
+                categoryString.append(productCategory.getIdProductCategory()).append(",").append(productCategory.getNameProductCategory()).append("\n");
             }
+            bufferedWriter.write(categoryString.toString());
             bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {
@@ -45,10 +44,13 @@ public class ReadWriteFile implements IProductCategoryStorage{
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null){
-                String[] productCategoryString=line.split(",");
-                int idCategory=Integer.parseInt(productCategoryString[0]);
-                String nameCategory=productCategoryString[1];
-                ProductCategory productCategory=new ProductCategory(idCategory,nameCategory);
+                String[] productCategoryString = line.split(",");
+                if (productCategoryString.length != 2) {
+                    continue;
+                }
+                int idCategory = Integer.parseInt(productCategoryString[0].trim()); // Chuyển đổi id thành số nguyên
+                String nameCategory = productCategoryString[1].trim(); // Lấy tên danh mục
+                ProductCategory productCategory = new ProductCategory(idCategory, nameCategory);
                 productCategoryList.add(productCategory);
             }
         } catch (FileNotFoundException e) {
