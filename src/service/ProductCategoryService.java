@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProductCategoryService implements IService<ProductCategory> {
-    Scanner scanner= new Scanner(System.in);
-    private static IProductCategoryStorage iProductCategoryStorage= ReadWriteFile.getInstance();
-        private static List<ProductCategory> productCategoryList=iProductCategoryStorage.readFile();
+    Scanner scanner = new Scanner(System.in);
+    private static IProductCategoryStorage iProductCategoryStorage = ReadWriteFile.getInstance();
+    private static List<ProductCategory> productCategoryList = iProductCategoryStorage.readFile();
+
     @Override
     public void add() throws InterruptedException {
         System.out.println("_____Thêm Danh Mục Sản Phẩm_____");
@@ -31,12 +32,12 @@ public class ProductCategoryService implements IService<ProductCategory> {
     public void edit() throws InterruptedException {
         System.out.println("_____Chỉnh Sửa Danh Mục Sản Phẩm_____");
         System.out.print("Nhập Id mà bạn muốn chỉnh sửa: ");
-        int idEdit = scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
 
         ProductCategory categoryToEdit = null;
         for (ProductCategory category : productCategoryList) {
-            if (category.getIdProductCategory() == idEdit) {
+            if (category.getIdProductCategory() == id) {
                 categoryToEdit = category;
                 break;
             }
@@ -62,12 +63,12 @@ public class ProductCategoryService implements IService<ProductCategory> {
         System.out.print("Nhập Id mà bạn muốn xóa: ");
         int idDelete = scanner.nextInt();
         scanner.nextLine();
-        boolean remove=false;
+        boolean remove = false;
 
         for (int i = 0; i < productCategoryList.size(); i++) {
             if (productCategoryList.get(i).getIdProductCategory() == idDelete) {
                 productCategoryList.remove(i);
-                remove=true;
+                remove = true;
                 break;
             }
         }

@@ -1,38 +1,38 @@
 package model;
 
 public class ProductCategory {
-    private int idProductCategory;
-    private String nameProductCategory;
+    private int id;
+    private String name;
 
     public ProductCategory() {
     }
 
     public ProductCategory(int idProductCategory, String nameProductCategory) {
-        this.idProductCategory = idProductCategory;
-        this.nameProductCategory = nameProductCategory;
+        this.id = idProductCategory;
+        this.name = nameProductCategory;
     }
 
     public int getIdProductCategory() {
-        return idProductCategory;
+        return id;
     }
 
-    public void setIdProductCategory(int idProductCategory) {
-        this.idProductCategory = idProductCategory;
+    public void setIdProductCategory(int id) {
+        this.id = id;
     }
 
     public String getNameProductCategory() {
-        return nameProductCategory;
+        return name;
     }
 
-    public void setNameProductCategory(String nameProductCategory) {
-        this.nameProductCategory = nameProductCategory;
+    public void setNameProductCategory(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "ProductCategory{" +
-                "idProductCategory=" + idProductCategory +
-                ", nameProductCategory='" + nameProductCategory + '\'' +
+                "idProductCategory=" + id +
+                ", nameProductCategory='" + name + '\'' +
                 '}';
     }
 }

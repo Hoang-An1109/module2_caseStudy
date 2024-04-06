@@ -2,19 +2,23 @@ package model;
 
 import java.time.LocalDate;
 
-public class Staff extends Role{
-    private int idStaff;
+public class User {
+    private int id;
+    private String userName;
+    private String password;
     private String fullName;
     private String gender;
     private LocalDate dateOfBirth;
     private String role;
     private int phoneNumber;
 
-    public Staff() {
+    public User() {
     }
 
-    public Staff(int idStaff, String fullName, String gender, LocalDate dateOfBirth, String role, int phoneNumber) {
-        this.idStaff = idStaff;
+    public User(int id, String userName, String password, String fullName, String gender, LocalDate dateOfBirth, String role, int phoneNumber) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
         this.fullName = fullName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -22,22 +26,28 @@ public class Staff extends Role{
         this.phoneNumber = phoneNumber;
     }
 
-    public Staff(int idRole, String nameRole, int idStaff, String fullName, String gender, LocalDate dateOfBirth, String role, int phoneNumber) {
-        super(idRole, nameRole);
-        this.idStaff = idStaff;
-        this.fullName = fullName;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.role = role;
-        this.phoneNumber = phoneNumber;
+    public int getId() {
+        return id;
     }
 
-    public int getIdStaff() {
-        return idStaff;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setIdStaff(int idStaff) {
-        this.idStaff = idStaff;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFullName() {
@@ -78,17 +88,5 @@ public class Staff extends Role{
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "idStaff=" + idStaff +
-                ", fullName='" + fullName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", role='" + role + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                "} " + super.toString();
     }
 }

@@ -1,8 +1,8 @@
 package model;
 
-public class Product extends ProductCategory{
-    private int idProduct;
-    private String nameProduct;
+public class Product {
+    private int id;
+    private String name;
     private String nameProductCategory;
     private double price;
     private int quantity;
@@ -10,37 +10,28 @@ public class Product extends ProductCategory{
     public Product() {
     }
 
-    public Product(int idProduct, String nameProduct, String productCategory, double price, int quantity) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.nameProductCategory = productCategory;
+    public Product(int id, String name, String nameProductCategory, double price, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.nameProductCategory = nameProductCategory;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public Product(int idProductCategory, String nameProductCategory, int idProduct, String nameProduct, String nameProductCategory1, double price, int quantity) {
-        super(idProductCategory, nameProductCategory);
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.nameProductCategory = nameProductCategory1;
-        this.price = price;
-        this.quantity = quantity;
+    public int getId() {
+        return id;
     }
 
-    public int getIdProduct() {
-        return idProduct;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    public String getName() {
+        return name;
     }
 
-    public String getNameProduct() {
-        return nameProduct;
-    }
-
-    public void setNameProduct(String nameProduct) {
-        this.nameProduct = nameProduct;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNameProductCategory() {
@@ -65,16 +56,5 @@ public class Product extends ProductCategory{
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "idProduct=" + idProduct +
-                ", nameProduct='" + nameProduct + '\'' +
-                ", productCategory='" + nameProductCategory + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                "} " + super.toString();
     }
 }

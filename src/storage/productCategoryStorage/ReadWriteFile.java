@@ -48,8 +48,9 @@ public class ReadWriteFile implements IProductCategoryStorage{
                 if (productCategoryString.length != 2) {
                     continue;
                 }
-                int idCategory = Integer.parseInt(productCategoryString[0].trim()); // Chuyển đổi id thành số nguyên
-                String nameCategory = productCategoryString[1].trim(); // Lấy tên danh mục
+                int idCategory = Integer.parseInt(productCategoryString[0].trim());
+                String nameCategory = productCategoryString[1].trim();
+
                 ProductCategory productCategory = new ProductCategory(idCategory, nameCategory);
                 productCategoryList.add(productCategory);
             }

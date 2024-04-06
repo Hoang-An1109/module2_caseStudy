@@ -6,32 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteFile implements IProductStorage {
-    private static ReadWriteFile instance1;
+    private static ReadWriteFile instance;
     private ReadWriteFile() {
     }
     public static ReadWriteFile getInstance() {
-        if (instance1 ==null){
+        if (instance ==null){
             synchronized (ReadWriteFile.class){
-                if (instance1 == null)
-                    instance1 = new ReadWriteFile();
+                if (instance == null)
+                    instance = new ReadWriteFile();
             }
         }
-        return instance1;
+        return instance;
     }
 
     private static final File file=new File("product.csv");
 
     @Override
-    public void writeFile(List<Product> product) {
+    public void writeFile(List<Product> productList) {
         try {
             FileWriter fileWriter=new FileWriter(file);
             BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
-//            StringBuilder productString=new StringBuilder();
-            String line;
-            for(Product p:product){
-                line=p.getIdProduct()+","+p.getNameProduct()+","+p.getNameProductCategory()+","+p.getPrice()+","+p.getQuantity();
-                bufferedWriter.write(line);
+            StringBuilder productString=new StringBuilder();
+            for(Product p:productList){
+                productString.append(p.getId()).append(",").append(p.getName()).append(",").append(p.getNameProductCategory()).append(",").append(p.getPrice()).append(",").append(p.getQuantity()).append("\n");
             }
+            bufferedWriter.write(productString.toString());
+            bufferedWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -46,11 +47,14 @@ public class ReadWriteFile implements IProductStorage {
             BufferedReader bufferedReader=new BufferedReader(fileReader);
             while((line=bufferedReader.readLine())!=null){
                 String[] productString=line.split(",");
-                int idProduct=Integer.parseInt(productString[0]);
-                String nameProduct=productString[1];
-                String nameProductCategory=productString[2];
-                double price=Double.parseDouble(productString[3]);
-                int quantity=Integer.parseInt(productString[4]);
+                if (productString.length != 5) {
+                    continue;
+                }
+                int idProduct=Integer.parseInt(productString[0].trim());
+                String nameProduct=productString[1].trim();
+                String nameProductCategory=productString[2].trim();
+                double price=Double.parseDouble(productString[3].trim());
+                int quantity=Integer.parseInt(productString[4].trim());
 
                 Product product=new Product(idProduct,nameProduct,nameProductCategory,price,quantity);
                 productList.add(product);

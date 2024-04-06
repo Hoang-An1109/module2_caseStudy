@@ -42,7 +42,7 @@ public class ProductCategoryController {
                 case 6:{
 
                 }
-                case 7:{
+                case 0:{
                     exit=false;
                     break;
                 }
