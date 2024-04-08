@@ -59,6 +59,7 @@ public class ProductController {
                     break;
                 }
                 case 0: {
+                    System.out.println();
                     ManagerMenu.showMenuManager();
                     break;
                 }

@@ -1,7 +1,6 @@
 package controller;
 
-import view.ManagerMenu;
-import view.ProductMenu;
+import view.*;
 
 import java.util.Scanner;
 
@@ -16,22 +15,23 @@ public class ManagerController {
         while (exit){
             switch (option){
                 case 1:{
-                    ManagerMenu.showMenuManager();
+                    ProductMenu.showMenuProduct();
                     break;
                 }
                 case 2:{
-                    ManagerMenu.showMenuManager();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
                 case 3:{
-                    ManagerMenu.showMenuManager();
+                    EmployeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
                 case 4:{
-                    ManagerMenu.showMenuManager();
+                    BillMenu.showMenuBill();
                     break;
                 }
                 case 0:{
+                    LoginMenu.showMenuLogin();
                     break;
                 }
                 default:{

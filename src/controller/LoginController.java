@@ -1,56 +1,41 @@
 package controller;
 
 import model.User;
+import service.LoginService;
 import storage.userStorage.ReadWriteFileUser;
 import view.EmployeeMenu;
 import view.ManagerMenu;
+import view.ProductMenu;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class LoginController {
-    Scanner scanner = new Scanner(System.in);
-    public static List<User> userList = ReadWriteFileUser.getInstance().readFile();
-    public static String currentUser;
+    public static void controllerLogin() throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
+        LoginService loginService = new LoginService();
 
-    public void login() throws InterruptedException {
-        boolean isSucceeded = false;
-        System.out.println("__________Đăng nhập__________");
-        System.out.println("Nhập Username: ");
-        String username = scanner.nextLine();
-        System.out.println("Nhập Password: ");
-        String password = scanner.nextLine();
+        System.out.print("Mời bạn chọn: ");
+        int option = scanner.nextInt();
+        System.out.println();
 
-        for (User user : userList) {
-            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
-                isSucceeded = true;
-                currentUser = username;
-                if (user.getRole().equalsIgnoreCase("Manager")) {
-                    System.out.println("Đăng nhập thành công.");
-                    ManagerMenu.showMenuManager();
+        boolean exit=true;
+        while (exit){
+            switch (option){
+                case 1:{
+                    loginService.login();
                     break;
-                } else {
-                    if (user.getRole().equalsIgnoreCase("Employee")) {
-                        System.out.println("Đăng nhập thành công.");
-                        EmployeeMenu.showEmployeeMenu();
-                        break;
-                    }
+                }
+                case 0:{
+                    System.exit(0);
+                    break;
+                }
+                default:{
+                    System.out.println("Yêu cầu của bạn chọn không có trong Menu.");
+                    ProductMenu.showMenuProduct();
+                    break;
                 }
             }
         }
-        if (!isSucceeded) {
-            System.out.println("Username hoặc Password không chính xác.");
-            login();
-        }
-    }
-
-    public static String showUsername() {
-        StringBuilder showUesrname = new StringBuilder();
-        for (User user : userList) {
-            if (currentUser.equals(user.getUserName())) {
-                showUesrname.append(user.getFullName());
-            }
-        }
-        return showUesrname.toString();
     }
 }
