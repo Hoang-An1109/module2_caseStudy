@@ -1,7 +1,6 @@
 package service;
 
 import model.Product;
-import storage.productStorage.IProductStorage;
 import storage.productStorage.ReadWriteFileProduct;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class ProductService implements IService<Product> {
     @Override
     public void add() throws InterruptedException {
         System.out.println("__________Thêm Sản Phẩm__________");
-        System.out.print("Nhập ID sản phẩm: ");
+        System.out.print("Nhập mã sản phẩm: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
@@ -30,7 +29,6 @@ public class ProductService implements IService<Product> {
 
         System.out.print("Nhập số lượng sản phẩm: ");
         int quantity = scanner.nextInt();
-        scanner.nextLine();
 
         productList.add(new Product(id, name, nameCategory, price, quantity));
 
@@ -42,6 +40,7 @@ public class ProductService implements IService<Product> {
     @Override
     public void edit() throws InterruptedException {
         System.out.println("__________Chỉnh Sửa Sản Phẩm__________");
+        show();
         System.out.print("Nhập mã sản phẩm mà bạn muốn chỉnh sửa: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -56,6 +55,7 @@ public class ProductService implements IService<Product> {
 
         if (productToEdit == null) {
             System.out.println("Không tìm thấy mã sản phẩm cần chỉnh sửa trong danh sách sản phẩm.");
+            System.out.println();
             return;
         }
 
@@ -78,13 +78,14 @@ public class ProductService implements IService<Product> {
         productToEdit.setQuantity(newQuantity);
 
         ReadWriteFileProduct.getInstance().writeFile(productList);
-        System.out.print("Đã chỉnh sửa sản phẩm thành công.");
+        System.out.println("Đã chỉnh sửa sản phẩm thành công.");
         System.out.println();
     }
 
     @Override
     public void delete() throws InterruptedException {
         System.out.println("__________Xóa Sản Phẩm__________");
+        show();
         System.out.print("Nhập mã sản phẩm mà bạn muốn xóa: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -109,20 +110,95 @@ public class ProductService implements IService<Product> {
 
     @Override
     public void show() throws InterruptedException {
-        System.out.printf("| %-10s | %-40s | %-40s | %-20s | %-20s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+        System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+        System.out.println("_____________________________________________________________________________________");
         for (Product product : productList) {
-            System.out.printf("| %-10s | %-40s | %-40s | %-20s | %-20s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
+            System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
         }
         System.out.println();
     }
 
     @Override
     public void findById() throws InterruptedException {
+        System.out.println("_____Tìm kiếm sản phẩn theo mã sản phẩm._____");
+        System.out.print("Nhập mã sản phẩm cần tìm: ");
+        int id=scanner.nextInt();
+        scanner.nextLine();
 
+        boolean find=false;
+        for (Product product:productList){
+            if (product.getId()==id){
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+                System.out.println("_____________________________________________________________________________________");
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
+                find=true;
+            }
+        }
+        if (!find) {
+            System.out.println("Không tìm thấy sản phẩm có mã là " + id);
+        }
+        System.out.println();
     }
 
     @Override
     public void findByName() throws InterruptedException {
+        System.out.println("_____Tìm kiếm sản phẩn theo tên sản phẩm._____");
+        System.out.print("Nhập tên sản phẩm cần tìm: ");
+        String name = scanner.nextLine();
 
+        boolean find=false;
+        for (Product product:productList){
+            if (product.getName().equalsIgnoreCase(name)){
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+                System.out.println("_____________________________________________________________________________________");
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
+                find=true;
+            }
+        }
+        if (!find) {
+            System.out.println("Không tìm thấy sản phẩm có tên là " + name);
+        }
+        System.out.println();
+    }
+
+    public void findByCategory() throws InterruptedException{
+        System.out.println("_____Tìm kiếm sản phẩn theo tên danh mục sản phẩm._____");
+        System.out.print("Nhập tên danh mục sản phẩm cần tìm: ");
+        String nameCategory = scanner.nextLine();
+
+        boolean find=false;
+        System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+        System.out.println("_____________________________________________________________________________________");
+        for (Product product:productList){
+            if (product.getNameProductCategory().equalsIgnoreCase(nameCategory)){
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
+                find=true;
+            }
+        }
+        if (!find) {
+            System.out.println("Không tìm thấy sản phẩm có tên là " + nameCategory);
+        }
+        System.out.println();
+    }
+
+    public void findByPrice() throws InterruptedException{
+        System.out.println("_____Tìm kiếm sản phẩn theo giá sản phẩm._____");
+        System.out.print("Nhập giá sản phẩm cần tìm: ");
+        double price=scanner.nextDouble();
+        scanner.nextLine();
+
+        boolean find=false;
+        System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", "ID", "NAME", "NAME CATEGORY", "PRICE", "QUANTITY");
+        System.out.println("_____________________________________________________________________________________");
+        for (Product product:productList){
+            if (product.getPrice()==price){
+                System.out.printf("| %-3s | %-30s | %-20s | %-8s | %-8s | %n", product.getId(),product.getName(),product.getNameProductCategory(),product.getPrice(),product.getQuantity());
+                find=true;
+            }
+        }
+        if (!find) {
+            System.out.println("Không tìm thấy sản phẩm có giá là " + price);
+        }
+        System.out.println();
     }
 }

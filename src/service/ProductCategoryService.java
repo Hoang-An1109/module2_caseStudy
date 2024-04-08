@@ -97,45 +97,45 @@ public class ProductCategoryService implements IService<ProductCategory> {
 
     @Override
     public void findById() throws InterruptedException {
-        System.out.println("_____Tìm kiếm danh mục sản phẩn theo mã sản phẩm._____");
-        System.out.println("Nhập mã danh mục cần tìm: ");
-        int id=scanner.nextInt();
+        System.out.println("_____Tìm kiếm danh mục sản phẩn theo mã danh mục ._____");
+        System.out.print("Nhập mã danh mục cần tìm: ");
+        int id = scanner.nextInt();
         scanner.nextLine();
 
-        boolean find=false;
-        for (ProductCategory category : productCategoryList){
-            if(category.getIdProductCategory()==id){
+        boolean find = false;
+        for (ProductCategory category : productCategoryList) {
+            if (category.getIdProductCategory() == id) {
                 System.out.printf("| %-5s | %-20s |%n", "ID", "NAME");
                 System.out.println("________________________________");
                 System.out.printf("| %-5s | %-20s |%n", category.getIdProductCategory(), category.getNameProductCategory());
-                find=true;
+                find = true;
             }
         }
 
-        if (!find){
-            System.out.print("Không tìm thấy danh mục sản phẩm có mã là "+id);
+        if (!find) {
+            System.out.print("Không tìm thấy danh mục sản phẩm có mã là " + id);
         }
         System.out.println();
     }
 
     @Override
     public void findByName() throws InterruptedException {
-        System.out.println("_____Tìm kiếm danh mục sản phẩn theo tên sản phẩm._____");
+        System.out.println("_____Tìm kiếm danh mục sản phẩn theo tên danh mục._____");
         System.out.print("Nhập tên danh mục cần tìm: ");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
 
-        boolean find=false;
-        for (ProductCategory category: productCategoryList){
-            if (category.getNameProductCategory().equalsIgnoreCase(name)){
+        boolean find = false;
+        for (ProductCategory category : productCategoryList) {
+            if (category.getNameProductCategory().equalsIgnoreCase(name)) {
                 System.out.printf("| %-5s | %-20s |%n", "ID", "NAME");
                 System.out.println("________________________________");
                 System.out.printf("| %-5s | %-20s |%n", category.getIdProductCategory(), category.getNameProductCategory());
-                find=true;
+                find = true;
             }
         }
 
-        if (!find){
-            System.out.println("Không tìm thấy danh mục sản phẩm có tên là "+name);
+        if (!find) {
+            System.out.println("Không tìm thấy danh mục sản phẩm có tên là " + name);
         }
         System.out.println();
     }

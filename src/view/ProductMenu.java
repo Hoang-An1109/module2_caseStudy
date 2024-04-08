@@ -11,9 +11,9 @@ public class ProductMenu {
         System.out.println("4. Hiển thị sản phẩm.");
         System.out.println("5. Tìm kiếm sản phẩm theo mã sản phẩm.");
         System.out.println("6. Tìm kiếm sản phẩm theo tên sản phẩm.");
-        System.out.println("7. Tìm kiếm sản phẩm theo giá sản phẩm.");
-        System.out.println("0. Thoát Menu.");
-        System.out.println();
+        System.out.println("7. Tìm kiếm sản phẩm theo tên danh mục sản phẩm.");
+        System.out.println("8. Tìm kiếm sản phẩm theo giá sản phẩm.");
+        System.out.println("0. Quay trở về menu quản lý.");
         ProductController.controllerProduct();
     }
 }
