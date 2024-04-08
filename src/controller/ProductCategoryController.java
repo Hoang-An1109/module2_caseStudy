@@ -1,60 +1,64 @@
 package controller;
 
 import service.ProductCategoryService;
-import view.ProductCategoryView;
+import view.EmployeeManagerMenu;
+import view.ManagerMenu;
+import view.ProductCategoryMenu;
 
 import java.util.Scanner;
 
 public class ProductCategoryController {
-    public static void controllerProductCategory() throws InterruptedException{
+    public static void controllerProductCategory() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        ProductCategoryService productCategoryService= new ProductCategoryService();
+        ProductCategoryService productCategoryService = new ProductCategoryService();
 
-        System.out.print("Mời bạn chon: ");
-        int option=scanner.nextInt();
+        System.out.print("Mời bạn chọn: ");
+        int option = scanner.nextInt();
+        System.out.println();
 
-        boolean exit=true;
-        while (exit){
-            switch (option){
-                case 1:{
+        boolean exit = true;
+        while (exit) {
+            switch (option) {
+                case 1: {
                     productCategoryService.add();
-                    ProductCategoryView.showMenuCategory();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-                case 2:{
+                case 2: {
                     productCategoryService.edit();
-                    ProductCategoryView.showMenuCategory();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-                case 3:{
+                case 3: {
                     productCategoryService.delete();
-                    ProductCategoryView.showMenuCategory();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-                case 4:{
+                case 4: {
                     productCategoryService.show();
-                    ProductCategoryView.showMenuCategory();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-                case 5:{
-
-                }
-                case 6:{
-
-                }
-                case 0:{
-                    exit=false;
+                case 5: {
+                    productCategoryService.findById();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-                default:{
+                case 6: {
+                    productCategoryService.findByName();
+                    ProductCategoryMenu.showMenuCategory();
+                    break;
+                }
+                case 0: {
+                    ManagerMenu.showMenuManager();
+                    break;
+                }
+                default: {
                     System.out.println("Yêu cầu của bạn chọn không có trong Menu.");
-                    ProductCategoryView.showMenuCategory();
+                    ProductCategoryMenu.showMenuCategory();
                     break;
                 }
-
             }
-
-
         }
     }
 }

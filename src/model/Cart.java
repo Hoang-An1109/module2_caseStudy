@@ -1,21 +1,21 @@
 package model;
 
-import java.util.List;
-
 public class Cart {
     private int id;
-    private String nameStaff;
-    private List<CartItem> cart;
-    private double totalAmout;
+    private String nameProduct;
+    private int quantity;
+    private double price;
+    private double totalAmount;
 
     public Cart() {
     }
 
-    public Cart(int id, String nameStaff, List<CartItem> cart, double totalAmout) {
+    public Cart(int id, String nameProduct, int quantity, double price, double totalAmout) {
         this.id = id;
-        this.nameStaff = nameStaff;
-        this.cart = cart;
-        this.totalAmout = totalAmout;
+        this.nameProduct = nameProduct;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalAmount = this.quantity * this.price;
     }
 
     public int getId() {
@@ -26,27 +26,35 @@ public class Cart {
         this.id = id;
     }
 
-    public String getNameStaff() {
-        return nameStaff;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public void setNameStaff(String nameStaff) {
-        this.nameStaff = nameStaff;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
-    public List<CartItem> getCart() {
-        return cart;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCart(List<CartItem> cart) {
-        this.cart = cart;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public double getTotalAmout() {
-        return totalAmout;
+    public double getPrice() {
+        return price;
     }
 
-    public void setTotalAmout(double totalAmout) {
-        this.totalAmout = totalAmout;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount=quantity*price;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

@@ -1,7 +1,7 @@
 package view;
 
-public class SortListView {
-    public static void sortView() throws InterruptedException{
+public class SortProductMenu {
+    public static void showSortProductMenu() throws InterruptedException{
         System.out.println("________________________________");
         System.out.println("1. Sắp xếp theo giá từ thấp đến cao.");
         System.out.println("2. Sắp xếp theo giá từ cao đến thấp.");

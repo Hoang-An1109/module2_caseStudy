@@ -2,10 +2,7 @@ package view;
 
 import controller.ProductCategoryController;
 
-import java.util.Scanner;
-
-public class ProductCategoryView {
-    public static Scanner scanner=new Scanner(System.in);
+public class ProductCategoryMenu {
     public static void showMenuCategory() throws InterruptedException{
         System.out.println("__________Menu__________");
         System.out.println("1. Thêm danh mục sản phẩm.");

@@ -5,16 +5,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadWriteFile implements IProductCategoryStorage{
-    private static ReadWriteFile instance;
-    private ReadWriteFile(){
+public class ReadWriteFileCategory implements IProductCategoryStorage{
+    private static ReadWriteFileCategory instance;
+    private ReadWriteFileCategory(){
 
     }
-    public static ReadWriteFile getInstance() {
+    public static ReadWriteFileCategory getInstance() {
         if (instance==null){
-            synchronized (ReadWriteFile.class){
+            synchronized (ReadWriteFileCategory.class){
                 if (instance == null)
-                    instance = new ReadWriteFile();
+                    instance = new ReadWriteFileCategory();
             }
         }
         return instance;

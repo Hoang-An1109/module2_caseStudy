@@ -2,7 +2,7 @@ package view;
 
 import controller.ProductController;
 
-public class ProductView {
+public class ProductMenu {
     public static void showMenuProduct() throws InterruptedException{
         System.out.println("__________Menu___________");
         System.out.println("1. Thêm sản phẩm.");

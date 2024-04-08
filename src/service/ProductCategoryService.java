@@ -1,21 +1,19 @@
 package service;
 
 import model.ProductCategory;
-import storage.productCategoryStorage.IProductCategoryStorage;
-import storage.productCategoryStorage.ReadWriteFile;
+import storage.productCategoryStorage.ReadWriteFileCategory;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductCategoryService implements IService<ProductCategory> {
     Scanner scanner = new Scanner(System.in);
-    private static IProductCategoryStorage iProductCategoryStorage = ReadWriteFile.getInstance();
-    private static List<ProductCategory> productCategoryList = iProductCategoryStorage.readFile();
+    private static List<ProductCategory> productCategoryList = ReadWriteFileCategory.getInstance().readFile();
 
     @Override
     public void add() throws InterruptedException {
         System.out.println("_____Thêm Danh Mục Sản Phẩm_____");
-        System.out.print("Nhập ID danh mục sản phẩm: ");
+        System.out.print("Nhập mã danh mục sản phẩm: ");
         int idCategory = scanner.nextInt();
         scanner.nextLine();
 
@@ -24,14 +22,16 @@ public class ProductCategoryService implements IService<ProductCategory> {
 
         productCategoryList.add(new ProductCategory(idCategory, nameCategory));
 
-        ReadWriteFile.getInstance().writeFile(productCategoryList);
+        ReadWriteFileCategory.getInstance().writeFile(productCategoryList);
         System.out.println("Bạn đã thêm danh mục sản phẩm thành công.");
+        System.out.println();
     }
 
     @Override
     public void edit() throws InterruptedException {
         System.out.println("_____Chỉnh Sửa Danh Mục Sản Phẩm_____");
-        System.out.print("Nhập Id mà bạn muốn chỉnh sửa: ");
+        show();
+        System.out.print("Nhập mã danh mục mà bạn muốn chỉnh sửa: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
@@ -45,6 +45,7 @@ public class ProductCategoryService implements IService<ProductCategory> {
 
         if (categoryToEdit == null) {
             System.out.println("Không tìm thấy Id cần chỉnh sửa trong danh sách danh mục sản phẩm.");
+            System.out.println();
             return;
         }
 
@@ -53,14 +54,16 @@ public class ProductCategoryService implements IService<ProductCategory> {
 
         categoryToEdit.setNameProductCategory(newName);
 
-        ReadWriteFile.getInstance().writeFile(productCategoryList);
+        ReadWriteFileCategory.getInstance().writeFile(productCategoryList);
         System.out.println("Đã chỉnh sửa danh mục sản phẩm thành công.");
+        System.out.println();
     }
 
     @Override
     public void delete() throws InterruptedException {
         System.out.println("_____Xóa Danh Mục Sản Phẩm_____");
-        System.out.print("Nhập Id mà bạn muốn xóa: ");
+        show();
+        System.out.print("Nhập mã danh mục mà bạn muốn xóa: ");
         int idDelete = scanner.nextInt();
         scanner.nextLine();
         boolean remove = false;
@@ -74,28 +77,66 @@ public class ProductCategoryService implements IService<ProductCategory> {
         }
 
         if (remove) {
-            ReadWriteFile.getInstance().writeFile(productCategoryList);
-            System.out.println("Đã xóa thành công.");
+            ReadWriteFileCategory.getInstance().writeFile(productCategoryList);
+            System.out.println("Đã xóa danh mục thành công.");
         } else {
             System.out.println("Không tìm thấy Id cần xóa trong danh sách danh mục sản phẩm.");
         }
+        System.out.println();
     }
 
     @Override
     public void show() throws InterruptedException {
-        System.out.printf("| %-10s | %-40s |%n", "ID", "NAME");
+        System.out.printf("| %-5s | %-20s |%n", "ID", "NAME");
+        System.out.println("________________________________");
         for (ProductCategory category : productCategoryList) {
-            System.out.printf("| %-10s | %-40s |%n", category.getIdProductCategory(), category.getNameProductCategory());
+            System.out.printf("| %-5s | %-20s |%n", category.getIdProductCategory(), category.getNameProductCategory());
         }
+        System.out.println();
     }
 
     @Override
     public void findById() throws InterruptedException {
+        System.out.println("_____Tìm kiếm danh mục sản phẩn theo mã sản phẩm._____");
+        System.out.println("Nhập mã danh mục cần tìm: ");
+        int id=scanner.nextInt();
+        scanner.nextLine();
 
+        boolean find=false;
+        for (ProductCategory category : productCategoryList){
+            if(category.getIdProductCategory()==id){
+                System.out.printf("| %-5s | %-20s |%n", "ID", "NAME");
+                System.out.println("________________________________");
+                System.out.printf("| %-5s | %-20s |%n", category.getIdProductCategory(), category.getNameProductCategory());
+                find=true;
+            }
+        }
+
+        if (!find){
+            System.out.print("Không tìm thấy danh mục sản phẩm có mã là "+id);
+        }
+        System.out.println();
     }
 
     @Override
     public void findByName() throws InterruptedException {
+        System.out.println("_____Tìm kiếm danh mục sản phẩn theo tên sản phẩm._____");
+        System.out.print("Nhập tên danh mục cần tìm: ");
+        String name=scanner.nextLine();
 
+        boolean find=false;
+        for (ProductCategory category: productCategoryList){
+            if (category.getNameProductCategory().equalsIgnoreCase(name)){
+                System.out.printf("| %-5s | %-20s |%n", "ID", "NAME");
+                System.out.println("________________________________");
+                System.out.printf("| %-5s | %-20s |%n", category.getIdProductCategory(), category.getNameProductCategory());
+                find=true;
+            }
+        }
+
+        if (!find){
+            System.out.println("Không tìm thấy danh mục sản phẩm có tên là "+name);
+        }
+        System.out.println();
     }
 }

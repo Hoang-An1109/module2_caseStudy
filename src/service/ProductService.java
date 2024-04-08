@@ -1,17 +1,15 @@
 package service;
 
 import model.Product;
-import model.ProductCategory;
 import storage.productStorage.IProductStorage;
-import storage.productStorage.ReadWriteFile;
+import storage.productStorage.ReadWriteFileProduct;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductService implements IService<Product> {
     Scanner scanner = new Scanner(System.in);
-    private static IProductStorage iProductStorage = ReadWriteFile.getInstance();
-    private static List<Product> productList = iProductStorage.readFile();
+    private static List<Product> productList = ReadWriteFileProduct.getInstance().readFile();
 
     @Override
     public void add() throws InterruptedException {
@@ -36,7 +34,7 @@ public class ProductService implements IService<Product> {
 
         productList.add(new Product(id, name, nameCategory, price, quantity));
 
-        ReadWriteFile.getInstance().writeFile(productList);
+        ReadWriteFileProduct.getInstance().writeFile(productList);
         System.out.println("Bạn đã thêm sản phẩm thành công.");
         System.out.println();
     }
@@ -79,7 +77,7 @@ public class ProductService implements IService<Product> {
         productToEdit.setPrice(newPrice);
         productToEdit.setQuantity(newQuantity);
 
-        ReadWriteFile.getInstance().writeFile(productList);
+        ReadWriteFileProduct.getInstance().writeFile(productList);
         System.out.print("Đã chỉnh sửa sản phẩm thành công.");
         System.out.println();
     }
@@ -101,7 +99,7 @@ public class ProductService implements IService<Product> {
         }
 
         if (remove) {
-            storage.productStorage.ReadWriteFile.getInstance().writeFile(productList);
+            ReadWriteFileProduct.getInstance().writeFile(productList);
             System.out.println("Đã xóa thành công.");
         } else {
             System.out.println("Không tìm thấy mã sản phẩm cần xóa trong danh sách sản phẩm.");

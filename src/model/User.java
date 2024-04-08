@@ -10,12 +10,12 @@ public class User {
     private String gender;
     private LocalDate dateOfBirth;
     private String role;
-    private int phoneNumber;
+    private String phoneNumber;
 
     public User() {
     }
 
-    public User(int id, String userName, String password, String fullName, String gender, LocalDate dateOfBirth, String role, int phoneNumber) {
+    public User(int id, String userName, String password, String fullName, String gender, LocalDate dateOfBirth, String role, String phoneNumber) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -82,11 +82,11 @@ public class User {
         this.role = role;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
