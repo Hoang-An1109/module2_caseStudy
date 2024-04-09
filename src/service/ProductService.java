@@ -1,5 +1,6 @@
 package service;
 
+import model.Cart;
 import model.Product;
 import storage.productStorage.ReadWriteFileProduct;
 
@@ -200,5 +201,16 @@ public class ProductService implements IService<Product> {
             System.out.println("Không tìm thấy sản phẩm có giá là " + price);
         }
         System.out.println();
+    }
+
+    public static void setProductList(List<Cart> cartList){
+        for (Cart cart:cartList){
+            for (Product product:productList){
+                if(cart.getNameProduct().equalsIgnoreCase(product.getName())){
+                    product.setQuantity(product.getQuantity()-cart.getQuantity());
+                }
+            }
+        }
+        ReadWriteFileProduct.getInstance().writeFile(productList);
     }
 }

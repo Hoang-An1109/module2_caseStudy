@@ -39,7 +39,7 @@ public class ReadWriteFileBill implements IBillStorage{
                             .append(cart.getNameProduct()).append(",")
                             .append(cart.getQuantity()).append(",")
                             .append(cart.getPrice()).append(",")
-                            .append(cart.getTotalAmount()).append(".").append("\n");
+                            .append(cart.getTotalAmount()).append(",").append("\n");
                 }
             }
             bufferedWriter.write(billString.toString());

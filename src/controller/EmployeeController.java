@@ -45,16 +45,25 @@ public class EmployeeController {
                     break;
                 }
                 case 6: {
+                    employeeService.addCart();
                     EmployeeMenu.showEmployeeMenu();
                     break;
                 }
                 case 7: {
+                    employeeService.showCart();
                     EmployeeMenu.showEmployeeMenu();
                     break;
                 }
                 case 8: {
+                    employeeService.buyProduct();
                     EmployeeMenu.showEmployeeMenu();
                     break;
+                }
+                case 9:{// xem hóa đơn
+
+                }
+                case 10:{//xem thông tin cá nhân
+
                 }
                 case 0: {
                     System.out.println();

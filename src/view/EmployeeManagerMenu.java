@@ -8,9 +8,10 @@ public class EmployeeManagerMenu {
         System.out.println("1. Thêm nhân viên.");
         System.out.println("2. Xóa nhân viên.");
         System.out.println("3. Sửa thông tin nhân viên.");
-        System.out.println("4. Tìm kiếm nhân viên theo mã nhân viên.");
-        System.out.println("5. Tìm kiếm nhân viên theo tên nhân viên.");
-        System.out.println("0. Thoát Menu.");
+        System.out.println("4. Hiển thị thông tin nhân viên.");
+        System.out.println("5. Tìm kiếm nhân viên theo mã nhân viên.");
+        System.out.println("6. Tìm kiếm nhân viên theo tên nhân viên.");
+        System.out.println("0. Quay trở về menu quản lý.");
         EmployeeManagerController.controllerEmployeeManager();
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import service.BillService;
 import view.BillMenu;
+import view.ManagerMenu;
 import view.ProductCategoryMenu;
 
 import java.util.Scanner;
@@ -37,8 +38,8 @@ public class BillController {
                     BillMenu.showMenuBill();
                     break;
                 }
-                case 0:{ //Thoát Menu
-                    BillMenu.showMenuBill();
+                case 0:{
+                    ManagerMenu.showMenuManager();
                     break;
                 }
                 default:{

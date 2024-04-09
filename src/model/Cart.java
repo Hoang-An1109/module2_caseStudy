@@ -18,6 +18,14 @@ public class Cart {
         this.totalAmount = this.quantity * this.price;
     }
 
+    public Cart(int id, String nameProduct, int quantity, double price) {
+        this.id = id;
+        this.nameProduct = nameProduct;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalAmount=this.quantity* this.price;
+    }
+
     public int getId() {
         return id;
     }

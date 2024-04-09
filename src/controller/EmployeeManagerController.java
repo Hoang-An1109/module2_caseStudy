@@ -2,6 +2,7 @@ package controller;
 
 import service.EmployeeManagerService;
 import view.EmployeeManagerMenu;
+import view.ManagerMenu;
 
 import java.util.Scanner;
 
@@ -17,30 +18,36 @@ public class EmployeeManagerController {
         boolean exit=true;
         while (exit){
             switch (option){
-                case 1:{//Thêm nhân viên
+                case 1:{
                     employeeManagerService.add();
                     employeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
                 case 2:{ //Xóa nhân viên
+                    employeeManagerService.delete();
                     employeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
-                case 3:{ //Sửa nhân viên
+                case 3:{
                     employeeManagerService.edit();
                     employeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
-                case 4:{  //Tìm kiếm theo mã
+                case 4:{
+                    employeeManagerService.show();
                     employeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
-                case 5:{ //Tìm kiếm theo tên
+                case 5:{  //Tìm kiếm theo mã
                     employeeManagerMenu.showEmployeeManagerMenu();
                     break;
                 }
-                case 0:{ //Thoát
-                    EmployeeManagerMenu.showEmployeeManagerMenu();
+                case 6:{ //Tìm kiếm theo tên
+                    employeeManagerMenu.showEmployeeManagerMenu();
+                    break;
+                }
+                case 0:{
+                    ManagerMenu.showMenuManager();
                     break;
                 }
                 default:{

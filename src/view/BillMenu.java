@@ -10,7 +10,7 @@ public class BillMenu {
         System.out.println("3. Tìm kiếm hóa đơn theo tên sản phẩm.");
         System.out.println("4. Tìm kiếm hóa đơn theo tên danh mục.");
         System.out.println("5. Xóa hóa đơn.");
-        System.out.println("0. Thoát Menu.");
+        System.out.println("0. Quay trở về menu quản lý.");
         BillController.controllerBill();
     }
 }

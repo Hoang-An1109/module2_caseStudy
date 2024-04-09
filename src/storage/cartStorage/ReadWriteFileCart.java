@@ -32,7 +32,7 @@ public class ReadWriteFileCart implements ICartStorage {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             StringBuilder cartString = new StringBuilder();
             for (Cart cart : cartList) {
-                cartString.append(cart.getId()).append(",").append(cart.getNameProduct()).append(",").append(cart.getQuantity()).append(",").append(cart.getPrice()).append(",").append(cart.getTotalAmount()).append(".").append("\n");
+                cartString.append(cart.getId()).append(",").append(cart.getNameProduct()).append(",").append(cart.getQuantity()).append(",").append(cart.getPrice()).append(",").append("\n");
             }
             bufferedWriter.write(cartString.toString());
             bufferedWriter.close();
@@ -51,16 +51,15 @@ public class ReadWriteFileCart implements ICartStorage {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 String[] cartString = line.split(",");
-                if (cartString.length != 5) {
+                if (cartString.length != 4) {
                     continue;
                 }
                 int id = Integer.parseInt(cartString[0].trim());
                 String nameProduct = cartString[1].trim();
                 int quantity = Integer.parseInt(cartString[2].trim());
                 double price = Double.parseDouble(cartString[3].trim());
-                double totalAmount = Double.parseDouble(cartString[4].trim());
 
-                Cart cart = new Cart(id, nameProduct, quantity, price, totalAmount);
+                Cart cart = new Cart(id, nameProduct, quantity, price);
                 cartList.add(cart);
             }
         } catch (FileNotFoundException e) {
